@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Header } from "./components/";
+import { Header, Footer } from "./components/";
 function App() {
   return (
     <>
       <Header />
-      <h1>dziala 333</h1>
+      <main className="section-center flex-center">Welcome to shoop</main>
+      <Footer />
     </>
   );
 }
