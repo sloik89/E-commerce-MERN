@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Header, Footer } from "./components/";
+import { Outlet } from "react-router-dom";
 function App() {
   return (
     <>
       <Header />
-      <main className="section-center flex-center">Welcome to shoop</main>
+      <main className="section-center">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

@@ -26,6 +26,11 @@ a {
   text-decoration: none;
   color: white;
 }
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
 /* global classes */
 .logo {
   font-size: 2rem;
@@ -41,5 +46,18 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.home {
+  min-height: calc(100vh - 106px);
+}
+.star {
+  color: var(--violet);
+}
+.text-one-line {
+  font-size: 1.2rem;
+  height: 2.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* end of global classes */
