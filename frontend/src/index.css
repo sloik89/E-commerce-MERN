@@ -17,6 +17,7 @@
   --bg-nav: #242424;
   --violet: #9013fe;
   --bg: #1b1b1b;
+  --light-300: rgb(180, 172, 172);
 }
 body {
   color: white;
@@ -47,7 +48,7 @@ img {
   justify-content: center;
   align-items: center;
 }
-.home {
+.page-full {
   min-height: calc(100vh - 106px);
 }
 .star {
@@ -59,5 +60,30 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.btn {
+  font-size: 1rem;
+  background-color: var(--violet);
+  text-transform: uppercase;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.7rem;
+  font-weight: bold;
+  color: var(--light-300);
+}
+.btn:hover {
+  background-color: white;
+  color: var(--violet);
+}
+.width-90 {
+  width: 90%;
+  margin: 0 auto;
+}
+.padding-block {
+  padding: 2rem 0;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 /* end of global classes */

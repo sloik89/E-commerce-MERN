@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import products from "../products";
 import { Card } from "../components";
+import axios from "axios";
 import Wrapper from "../wrapers/Home";
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios("/api/products");
+      setProducts(data);
+      console.log(res);
+    };
+    fetchData();
+  }, []);
   return (
-    <div className="home">
+    <div className="home page-full">
       <h1>Latest products</h1>
       <Wrapper>
         {products.map((item) => {

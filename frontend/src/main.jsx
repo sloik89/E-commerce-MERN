@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Home } from "./Page";
+import { Home, Product } from "./Page";
 import App from "./App.jsx";
 import {
   createBrowserRouter,
@@ -13,6 +13,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
+      <Route path="/product/:id" element={<Product />} />
     </Route>
   )
 );

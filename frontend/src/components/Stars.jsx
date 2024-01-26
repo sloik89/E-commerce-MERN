@@ -15,8 +15,14 @@ const Stars = ({ rating, numReviews }) => {
       </span>
     );
   });
-  console.log(tempStars);
-  return <div className="stars">{tempStars.map((star) => star)}</div>;
+
+  return (
+    <div className="stars">
+      {tempStars.map((star, idx) => {
+        return <span key={idx}>{star}</span>;
+      })}
+    </div>
+  );
 };
 
 export default Stars;

@@ -6,8 +6,8 @@ import Wrapper from "../wrapers/Navbar";
 const Navbar = () => {
   const [show, setShow] = useState(true);
   return (
-    <Wrapper className="flex-center">
-      <div className="section-center">
+    <Wrapper className="flex-center ">
+      <div className="section-center width-90">
         <Link className="logo" to="/">
           logo
         </Link>
