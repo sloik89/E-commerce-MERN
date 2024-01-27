@@ -3,7 +3,7 @@ import { Stars } from "../components";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Wrapper from "../wrapers/Product";
-import products from "../products";
+
 import axios from "axios";
 import { FaBolt } from "react-icons/fa6";
 const Product = () => {
@@ -11,7 +11,8 @@ const Product = () => {
   const [product, setProduct] = useState({});
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios(`/api/product/${id}`);
+      const { data } = await axios(`/api/products/${id}`);
+      console.log(id);
       setProduct(data);
     };
     fetchData();

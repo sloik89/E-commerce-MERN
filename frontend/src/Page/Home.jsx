@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import products from "../products";
+
 import { Card } from "../components";
 import axios from "axios";
 import Wrapper from "../wrapers/Home";
@@ -9,7 +9,6 @@ const Home = () => {
     const fetchData = async () => {
       const { data } = await axios("/api/products");
       setProducts(data);
-      console.log(res);
     };
     fetchData();
   }, []);
