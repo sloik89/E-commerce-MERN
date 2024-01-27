@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { Card } from "../components";
-import axios from "axios";
+import { useGetProductsQuery } from "../slices/productSlice";
 import Wrapper from "../wrapers/Home";
 const Home = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios("/api/products");
-      setProducts(data);
-    };
-    fetchData();
-  }, []);
+  const { data: products, isLoading, isError } = useGetProductsQuery();
+  console.log(products, isLoading);
+
   return (
     <div className="home page-full">
       <h1>Latest products</h1>
       <Wrapper>
-        {products.map((item) => {
+        {products?.map((item) => {
           return <Card key={item._id} product={item} />;
         })}
       </Wrapper>
