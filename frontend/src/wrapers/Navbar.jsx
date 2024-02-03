@@ -3,6 +3,7 @@ const Wrapper = styled.nav`
   background-color: var(--bg);
   transition: 0.5s linear;
   padding: 1rem 0;
+
   .section-center {
     transition: 0.5s linear;
     display: flex;
@@ -12,6 +13,16 @@ const Wrapper = styled.nav`
     .auth-container {
       display: flex;
       gap: 0.5rem;
+      position: relative;
+      .total-cart {
+        background-color: var(--violet);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        position: absolute;
+        top: -5px;
+        left: -20px;
+      }
     }
     .hamburger {
       font-size: 1.5rem;

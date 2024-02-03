@@ -4,7 +4,6 @@ import { useGetProductsQuery } from "../slices/productSlice";
 import Wrapper from "../wrapers/Home";
 const Home = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
-  console.log(products, isLoading);
 
   return (
     <div className="home page-full">

@@ -1,8 +1,10 @@
 import styled from "styled-components";
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  .product-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
   .product-result {
     background-color: var(--bg-nav);
     color: var(--light-300);
@@ -23,9 +25,36 @@ const Wrapper = styled.div`
       font-size: 2.5rem;
     }
   }
+  .input-container {
+    position: relative;
+    background-color: var(--bg-body);
+    height: 40px;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+    input {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      color: white;
+      cursor: pointer;
+    }
+  }
   @media screen and (min-width: 800px) {
-    flex-direction: row;
-    align-items: start;
+    .product-container {
+      flex-direction: row;
+      align-items: start;
+    }
     .product-info {
       flex-basis: 60%;
     }
