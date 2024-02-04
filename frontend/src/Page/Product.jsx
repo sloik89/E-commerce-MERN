@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { LuPlus } from "react-icons/lu";
 import { HiMinusSm } from "react-icons/hi";
+import { InputQty } from "../components";
 import { useDispatch } from "react-redux";
 import Wrapper from "../wrapers/Product";
 import { Message } from "../components";
