@@ -1,22 +1,10 @@
 ### React Redux Toolkit
 
-# Create api routes using redux
+# Why we use api routes using redux
 
 - Dealing with backend API
 - This is parent for api calls
 - createApi dealing with asychronous request
-
-```js
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-``;
-
-const baseQuery = fetchBaseQuery({ baseUrl: "/api" });
-export const appSlice = createApi({
-  baseQuery,
-  tagTypes: ["Product", "User", "Order"],
-  endpoints: (builder) => ({}),
-});
-```
 
 ## Inject api routes to parent
 
@@ -60,4 +48,47 @@ const store = configureStore({
 
 ```js
 export const { useGetProductsQuery, useGetSingleProductQuery } = productsSlice;
+```
+
+### How to create api slice?
+
+```js
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+``;
+
+const baseQuery = fetchBaseQuery({ baseUrl: "/api" });
+export const appSlice = createApi({
+  baseQuery,
+  tagTypes: ["Product", "User", "Order"],
+  endpoints: (builder) => ({}),
+});
+```
+
+- you will inject endpoints to the appSlice
+
+### How to inject endpoints and export ?
+
+- when you use post method add mutation exmp. builder.mutataion
+
+```js
+import { appSlice } from "./appSlices";
+export const userApiSlice = appSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    login: builder.mutation({
+      query: (data) => ({
+        url: "/users/login",
+        method: "POST",
+        body: data,
+      }),
+    }),
+  }),
+});
+```
+
+```js
+export const { useLoginMutation } = userApiSlice;
+```
+
+```
+
 ```

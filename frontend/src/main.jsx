@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Home, Product, Cart } from "./Page";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Home, Product, Cart, Login } from "./Page";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store.js";
@@ -18,6 +20,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home />} />
       <Route path="/product/:id" element={<Product />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/login" element={<Login />} />
     </Route>
   )
 );
@@ -26,5 +29,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+    <ToastContainer />
   </React.StrictMode>
 );

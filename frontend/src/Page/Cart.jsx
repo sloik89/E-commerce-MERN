@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../wrapers/Cart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { removeFromCart } from "../slices/cartSlice";
 import { InputQty } from "../components";
 
 import { FaTrash } from "react-icons/fa";
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
 
-  console.log(cartItems);
+  const proccedCheckout = () => {
+    navigate("/login?redirect=/shipping");
+  };
   const handleRemoveItem = (id) => {
     dispatch(removeFromCart(id));
   };
@@ -55,6 +58,9 @@ const Cart = () => {
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </p>
+            <Link onClick={proccedCheckout} className="btn">
+              Procced to checkout
+            </Link>
           </div>
         </div>
       )}

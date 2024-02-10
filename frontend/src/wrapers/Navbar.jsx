@@ -39,6 +39,29 @@ const Wrapper = styled.nav`
     .auth-container.hide {
       display: none;
     }
+    .dropdown {
+      position: relative;
+      a {
+        color: inherit;
+      }
+    }
+    .dropdown-list {
+      color: black;
+      list-style: none;
+      overflow: hidden;
+      position: absolute;
+      background-color: #fff;
+      width: 150px;
+    }
+    .dropdown-list.show {
+      padding: 0.5rem;
+      border-radius: 5px;
+      transition: all linear 0.2s;
+    }
+    .dropdown-list.hide {
+      padding: 0;
+      height: 0;
+    }
     @media (min-width: 768px) {
       .hamburger {
         display: none;

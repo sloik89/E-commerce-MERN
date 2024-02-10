@@ -36,6 +36,9 @@ button {
   border: none;
   background-color: transparent;
 }
+input:focus {
+  outline: 0;
+}
 /* global classes */
 .error-message {
   background-color: rgb(184, 230, 230);
