@@ -92,3 +92,27 @@ export const { useLoginMutation } = userApiSlice;
 ```
 
 ```
+
+### How to create Private route?
+
+- create private components
+
+```js
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+const PrivateRoute = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+  return userInfo ? <Outlet /> : <Navigate to="/login" replace />;
+};
+
+export default PrivateRoute;
+```
+
+- add route to main
+
+```js
+<Route path="" element={<PrivateRoute />}>
+  <Route path="/shipping" element={<Shipping />} />
+</Route>
+```

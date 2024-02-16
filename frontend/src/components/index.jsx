@@ -8,6 +8,7 @@ import InputQty from "./InputQty";
 import FormContainer from "./FormContainer";
 import Loader from "./Loader";
 import PrivateRoute from "./PrivateRoute";
+import CheckoutSteps from "./CheckoutSteps";
 export {
   Navbar,
   Header,
@@ -19,4 +20,5 @@ export {
   FormContainer,
   Loader,
   PrivateRoute,
+  CheckoutSteps,
 };

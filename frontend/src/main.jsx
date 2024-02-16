@@ -3,7 +3,15 @@ import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PrivateRoute } from "./components";
-import { Home, Product, Cart, Login, Register, Shipping } from "./Page";
+import {
+  Home,
+  Product,
+  Cart,
+  Login,
+  Register,
+  Shipping,
+  Payment,
+} from "./Page";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store.js";
@@ -25,6 +33,7 @@ const router = createBrowserRouter(
       <Route path="/register" element={<Register />} />
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/payment" element={<Payment />} />
       </Route>
     </Route>
   )
