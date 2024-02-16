@@ -10,10 +10,15 @@ const authSlice = createSlice({
   reducers: {
     setCredentail: (state, action) => {
       console.log("invoke set credentail");
+      console.log(action.payload);
       state.userInfo = action.payload;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));
     },
+    logout: (state) => {
+      state.userInfo = null;
+      localStorage.removeItem("userInfo");
+    },
   },
 });
-export const { setCredentail } = authSlice.actions;
+export const { setCredentail, logout } = authSlice.actions;
 export default authSlice.reducer;

@@ -4,20 +4,21 @@ import { Loader } from "../components";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { FormContainer } from "../components";
-import { useLoginMutation } from "../slices/userApiSlice";
+import { useRegisterMutation } from "../slices/userApiSlice";
 import { setCredentail } from "../slices/authSlices";
 import Wrapper from "../wrapers/Login";
-const Login = () => {
+const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [pswd, setPswd] = useState("");
-  const [login, { isLoading }] = useLoginMutation();
+  const [confirmPswd, setConfirmPswd] = useState("");
+  const [userName, setUserName] = useState("");
+  const [register, { isLoading }] = useRegisterMutation();
   const { userInfo } = useSelector((state) => state.auth);
   const { search } = useLocation();
   const url = new URLSearchParams(search);
   const redirect = url.get("redirect") || "/";
-  console.log(redirect);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
@@ -25,9 +26,16 @@ const Login = () => {
   }, [userInfo, redirect, navigate]);
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submit");
+    if (pswd !== confirmPswd) {
+      toast.error("Password do not match");
+      return;
+    }
     try {
-      const res = await login({ email, password: pswd }).unwrap();
+      const res = await register({
+        name: userName,
+        email,
+        password: pswd,
+      }).unwrap();
       console.log(res);
       dispatch(setCredentail(res));
       navigate(redirect);
@@ -38,8 +46,18 @@ const Login = () => {
   return (
     <Wrapper className="page-full flex-center">
       <FormContainer>
-        <h1>Sign in</h1>
+        <h1>Register</h1>
         <form onSubmit={submitHandler} className="login-form flex-column">
+          <div className="form-row">
+            <label htmlFor="email">Name</label>
+            <input
+              name="name"
+              type="text"
+              placeholder="Enter name"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
           <div className="form-row">
             <label htmlFor="email">Email Adress</label>
             <input
@@ -60,17 +78,25 @@ const Login = () => {
               onChange={(e) => setPswd(e.target.value)}
             />
           </div>
+          <div className="form-row">
+            <label htmlFor="password">Confirm Password</label>
+            <input
+              name="password"
+              type="password"
+              placeholder="Confirm password"
+              value={confirmPswd}
+              onChange={(e) => setConfirmPswd(e.target.value)}
+            />
+          </div>
           <button disabled={isLoading} type="submit" className="btn btn-login">
-            Sign In
+            Register
           </button>
           {isLoading && <Loader />}
           <div className="form-row">
             <p>
-              New Customer?
-              <Link
-                to={redirect ? `/register?redirect=${redirect}` : "/register"}
-              >
-                Register
+              Already have a account?
+              <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+                Login
               </Link>
             </p>
           </div>
@@ -80,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

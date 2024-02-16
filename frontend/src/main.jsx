@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Product, Cart, Login } from "./Page";
+import { Home, Product, Cart, Login, Register } from "./Page";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store.js";
@@ -21,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/product/:id" element={<Product />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Route>
   )
 );

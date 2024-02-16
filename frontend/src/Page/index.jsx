@@ -2,4 +2,5 @@ import Home from "./Home";
 import Product from "./Product";
 import Cart from "./Cart";
 import Login from "./Login";
-export { Home, Product, Cart, Login };
+import Register from "./Register";
+export { Home, Product, Cart, Login, Register };

@@ -3,15 +3,27 @@ import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Wrapper from "../wrapers/Navbar";
 import { useSelector } from "react-redux";
+import { logout } from "../slices/authSlices";
+import { useDispatch } from "react-redux";
+import { useLogoutUserMutation } from "../slices/userApiSlice";
 const Navbar = () => {
+  const [logoutUser] = useLogoutUserMutation();
   const [show, setShow] = useState(true);
+  const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
   const { totalItemCart } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
-  const handleLogout = () => {
-    console.log("logout");
+  const handleLogout = async () => {
+    try {
+      const res = await logoutUser().unwrap();
+      console.log(res);
+      dispatch(logout());
+    } catch (err) {
+      toast.error("something went wrong");
+    }
   };
   return (
     <Wrapper className="flex-center ">
