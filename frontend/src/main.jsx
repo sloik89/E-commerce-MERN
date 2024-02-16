@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Home, Product, Cart, Login, Register } from "./Page";
+import { PrivateRoute } from "./components";
+import { Home, Product, Cart, Login, Register, Shipping } from "./Page";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store.js";
@@ -22,6 +23,9 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/shipping" element={<Shipping />} />
+      </Route>
     </Route>
   )
 );

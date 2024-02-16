@@ -7,6 +7,7 @@ import Message from "./Message";
 import InputQty from "./InputQty";
 import FormContainer from "./FormContainer";
 import Loader from "./Loader";
+import PrivateRoute from "./PrivateRoute";
 export {
   Navbar,
   Header,
@@ -17,4 +18,5 @@ export {
   InputQty,
   FormContainer,
   Loader,
+  PrivateRoute,
 };
