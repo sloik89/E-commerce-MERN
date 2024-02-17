@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 import productsRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/ordersRoute.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 connect();
 const app = express();
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/products", productsRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 app.use(notFound);
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {
