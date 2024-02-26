@@ -8,7 +8,7 @@ const Shipping = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { shippingAddress } = useSelector((state) => state.cart);
-  console.log(shippingAddress);
+
   const [address, setAddress] = useState(shippingAddress.address || "");
   const [city, setCity] = useState(shippingAddress.city || "");
   const [postalCode, setPostalCode] = useState(

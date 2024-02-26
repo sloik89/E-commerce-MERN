@@ -11,7 +11,10 @@ export const updateCart = (state) => {
 
   state.shippingPrice = state.itemsPrice > 500 ? 0 : 10;
   //   Calculating total price
-
+  state.totalItemCart = state.cartItems.reduce(
+    (acc, item) => acc + item.qty,
+    0
+  );
   state.totalPrice = (
     Number(state.itemsPrice) +
     Number(state.shippingPrice) +

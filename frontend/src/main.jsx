@@ -11,6 +11,8 @@ import {
   Register,
   Shipping,
   Payment,
+  PlaceOrder,
+  Order,
 } from "./Page";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
@@ -34,6 +36,8 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/placeorder" element={<PlaceOrder />} />
+        <Route path="/order/:id" element={<Order />} />
       </Route>
     </Route>
   )

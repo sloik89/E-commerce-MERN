@@ -5,4 +5,16 @@ import Login from "./Login";
 import Register from "./Register";
 import Shipping from "./Shipping";
 import Payment from "./Payment";
-export { Home, Product, Cart, Login, Register, Shipping, Payment };
+import PlaceOrder from "./PlaceOrder";
+import Order from "./Order";
+export {
+  Home,
+  Product,
+  Cart,
+  Login,
+  Register,
+  Shipping,
+  Payment,
+  PlaceOrder,
+  Order,
+};

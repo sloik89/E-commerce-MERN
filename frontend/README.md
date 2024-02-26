@@ -116,3 +116,29 @@ export default PrivateRoute;
   <Route path="/shipping" element={<Shipping />} />
 </Route>
 ```
+
+### How to redirect works?
+
+- In cart page when you click Procced to checkout
+
+  ```js
+  const proccedCheckout = () => {
+    navigate("/login?redirect=/shipping");
+  };
+  ```
+
+- In Login page
+
+```js
+const { search } = useLocation();
+// ?redirect=/shipping
+const url = new URLSearchParams(search);
+const redirect = url.get("redirect") || "/";
+// /shipping or /
+useEffect(() => {
+  if (userInfo) {
+    // if user present redirect to shipping
+    navigate(redirect);
+  }
+}, [userInfo, redirect, navigate]);
+```
