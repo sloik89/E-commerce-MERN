@@ -142,3 +142,19 @@ useEffect(() => {
   }
 }, [userInfo, redirect, navigate]);
 ```
+
+### Paypal integration
+
+- npm package
+
+```js
+  "@paypal/react-paypal-js": "^8.1.3",
+```
+
+- wrap app with PayPalProvider
+
+```js
+<PayPalScriptProvider deferLoading={true}>
+  <RouterProvider router={router} />
+</PayPalScriptProvider>
+```

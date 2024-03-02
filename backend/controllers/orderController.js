@@ -13,7 +13,7 @@ const createOrder = asyncHandler(async (req, res) => {
     shippingPrice,
     totalPrice,
   } = req.body;
-  console.log(orderItems);
+
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
@@ -62,7 +62,10 @@ const getOrderById = asyncHandler(async (req, res) => {
 // GET /api/orders/:id/pay
 // private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  res.send("update order to paid");
+  console.log(req.params);
+  const order = await Order.findByIdAndUpdate(req.params.id, { isPaid: true });
+  console.log(order);
+  res.json({ msg: "update order to paid", updated: order.updatedAt });
 });
 // update order to delivered
 // GET /api/orders/:id/deliver

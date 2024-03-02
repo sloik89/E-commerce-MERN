@@ -30,6 +30,7 @@ const PlaceOrder = () => {
         shippingPrice,
         paymentMethod,
         totalPrice,
+        itemsPrice,
       }).unwrap();
       dispatch(clearCart());
       navigate(`/order/${res._id}`);
