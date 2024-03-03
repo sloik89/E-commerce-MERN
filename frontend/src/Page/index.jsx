@@ -7,6 +7,7 @@ import Shipping from "./Shipping";
 import Payment from "./Payment";
 import PlaceOrder from "./PlaceOrder";
 import Order from "./Order";
+import Profile from "./Profile";
 export {
   Home,
   Product,
@@ -17,4 +18,5 @@ export {
   Payment,
   PlaceOrder,
   Order,
+  Profile,
 };
