@@ -8,6 +8,7 @@ import Payment from "./Payment";
 import PlaceOrder from "./PlaceOrder";
 import Order from "./Order";
 import Profile from "./Profile";
+import AdminOrders from "./AdminOrders";
 export {
   Home,
   Product,
@@ -19,4 +20,5 @@ export {
   PlaceOrder,
   Order,
   Profile,
+  AdminOrders,
 };

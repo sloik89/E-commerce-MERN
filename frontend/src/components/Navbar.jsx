@@ -54,6 +54,11 @@ const Navbar = () => {
                 <li>
                   <button onClick={handleLogout}> logout</button>
                 </li>
+                {userInfo.isAdmin && (
+                  <li>
+                    <Link to="/admin/orderlist">admin</Link>
+                  </li>
+                )}
               </ul>
             </div>
           ) : (

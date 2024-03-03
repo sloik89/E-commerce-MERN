@@ -62,9 +62,12 @@ const getOrderById = asyncHandler(async (req, res) => {
 // GET /api/orders/:id/pay
 // private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-  console.log(req.params);
-  const order = await Order.findByIdAndUpdate(req.params.id, { isPaid: true });
-  console.log(order);
+  console.log(req.body.update_time);
+  const order = await Order.findByIdAndUpdate(req.params.id, {
+    isPaid: true,
+    paidAt: req.body.update_time,
+  });
+
   res.json({ msg: "update order to paid", updated: order.updatedAt });
 });
 // update order to delivered

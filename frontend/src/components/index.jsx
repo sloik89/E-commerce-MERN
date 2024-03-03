@@ -9,6 +9,7 @@ import FormContainer from "./FormContainer";
 import Loader from "./Loader";
 import PrivateRoute from "./PrivateRoute";
 import CheckoutSteps from "./CheckoutSteps";
+import AdminRoute from "./AdminRoute";
 export {
   Navbar,
   Header,
@@ -21,4 +22,5 @@ export {
   Loader,
   PrivateRoute,
   CheckoutSteps,
+  AdminRoute,
 };

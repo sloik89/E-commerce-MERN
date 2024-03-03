@@ -141,7 +141,7 @@ const Profile = () => {
                       <td>{order.totalPrice}</td>
                       <td>
                         {order.isPaid ? (
-                          order.updatedAt.substring(0, 10)
+                          order.paidAt.substring(0, 10)
                         ) : (
                           <FaTimes style={{ color: "red" }} />
                         )}

@@ -15,7 +15,9 @@ import {
   PlaceOrder,
   Order,
   Profile,
+  AdminOrders,
 } from "./Page";
+import { AdminRoute } from "./components";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./store.js";
@@ -41,6 +43,9 @@ const router = createBrowserRouter(
         <Route path="/placeorder" element={<PlaceOrder />} />
         <Route path="/order/:id" element={<Order />} />
         <Route path="/profile" element={<Profile />} />
+      </Route>
+      <Route path="/" element={<AdminRoute />}>
+        <Route path="/admin/orderlist" element={<AdminOrders />} />
       </Route>
     </Route>
   )
