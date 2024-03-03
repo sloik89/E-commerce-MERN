@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { Message, Loader } from "../components";
 import { useProfileMutation } from "../slices/userApiSlice";
+import { FaTimes } from "react-icons/fa";
 import { useGetMyOrdersQuery } from "../slices/ordersSlices";
+import { Link } from "react-router-dom";
 import { setCredentail } from "../slices/authSlices";
 import Wrapper from "../wrapers/Profile";
 const Profile = () => {
@@ -13,7 +15,12 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { userInfo } = useSelector((state) => state.auth);
-  const { data, isLoading, isError } = useGetMyOrdersQuery();
+  const {
+    data: orders,
+    isLoading,
+    isError: errorOrders,
+  } = useGetMyOrdersQuery();
+  console.log(errorOrders);
   const [profile, { isLoading: loadingProfile, isError: errorLoading }] =
     useProfileMutation();
 
@@ -45,6 +52,7 @@ const Profile = () => {
       setEmail(userInfo.email);
     }
   }, [userInfo.name, userInfo.email]);
+  console.log(orders);
   return (
     <Wrapper>
       <div className="profile page-full">
@@ -102,7 +110,61 @@ const Profile = () => {
             </button>
           </form>
         </div>
-        <div className="profile-right">right</div>
+        <div className="profile-right">
+          {isLoading ? (
+            <Loader />
+          ) : errorOrders ? (
+            <Message variants="danger">
+              {errorOrders?.data?.message ||
+                errorOrders.error ||
+                "Unable to fetch orders"}
+            </Message>
+          ) : (
+            <div className="profile-orders">
+              <h3>My orders</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>DATE</th>
+                    <th>TOTAL</th>
+                    <th>PAID</th>
+                    <th>DELIVERED</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order, id) => (
+                    <tr key={order._id}>
+                      <td>{order._id}</td>
+                      <td>{order.createdAt.substring(0, 10)}</td>
+                      <td>{order.totalPrice}</td>
+                      <td>
+                        {order.isPaid ? (
+                          order.updatedAt.substring(0, 10)
+                        ) : (
+                          <FaTimes style={{ color: "red" }} />
+                        )}
+                      </td>
+                      <td>
+                        {order.isDelivered ? (
+                          order.updatedAt.substring(0, 10)
+                        ) : (
+                          <FaTimes style={{ color: "red" }} />
+                        )}
+                      </td>
+                      <td>
+                        <Link className="btn" to={`/order/${order._id}`}>
+                          Details
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
     </Wrapper>
   );
