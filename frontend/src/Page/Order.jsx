@@ -9,6 +9,7 @@ import {
   useGetOrderByIdQuery,
   useGetPayPalCientIdQuery,
   usePayOrderMutation,
+  useDeliverOrderMutation,
 } from "../slices/ordersSlices";
 const testingAcc = {
   email: "sb-2qbex29692220@personal.example.com",
@@ -22,7 +23,8 @@ const Order = () => {
     isLoading,
     isError,
   } = useGetOrderByIdQuery(orderId);
-
+  const [deliverOrder, { isLoading: deliverLoading }] =
+    useDeliverOrderMutation();
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { userInfo } = useSelector((state) => state.auth);
@@ -31,6 +33,17 @@ const Order = () => {
     isLoading: loadingPayPal,
     error: errorPayPal,
   } = useGetPayPalCientIdQuery();
+  const updateDeleiverd = async () => {
+    console.log("updated delivery");
+    try {
+      const deliver = await deliverOrder(orderId);
+      refetch();
+      console.log(deliver);
+      toast.success("order delivered");
+    } catch (err) {
+      toast.error(err?.data?.message || err.message);
+    }
+  };
   useEffect(() => {
     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
       const loadPayPalScript = async () => {
@@ -45,7 +58,6 @@ const Order = () => {
       };
       if (order && !order.isPaid) {
         if (!window.paypal) {
-          console.log(window.paypal);
           loadPayPalScript();
         }
       }
@@ -57,7 +69,6 @@ const Order = () => {
         await payOrder({ orderId, details });
         refetch();
         toast.success("Payment succesful");
-        console.log(data);
       } catch (err) {
         toast.error(err?.data?.message || err.message);
       }
@@ -66,8 +77,7 @@ const Order = () => {
   async function onApproveTest(data, actions) {
     const res = await payOrder({ orderId, details: { payer: {} } });
     refetch();
-    console.log(res);
-    console.log(first);
+
     toast.success("Payment succesful");
   }
   function onError() {}
@@ -176,6 +186,17 @@ const Order = () => {
                 )}
               </div>
             )}
+            {deliverLoading && <Loader />}
+            {userInfo &&
+              userInfo.isAdmin &&
+              order.isPaid &&
+              !order.isDelivered && (
+                <div>
+                  <button onClick={updateDeleiverd} className="btn">
+                    Mark as delivered
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       )}

@@ -48,9 +48,12 @@ const Navbar = () => {
                 {showDropdown ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
               </p>
               <ul className={`dropdown-list ${showDropdown ? "show" : "hide"}`}>
-                <li>
-                  <Link to="/profile"> profile</Link>
-                </li>
+                {!userInfo.isAdmin && (
+                  <li>
+                    <Link to="/profile"> profile</Link>
+                  </li>
+                )}
+
                 <li>
                   <button onClick={handleLogout}> logout</button>
                 </li>
