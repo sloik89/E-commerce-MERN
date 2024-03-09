@@ -62,6 +62,11 @@ const Navbar = () => {
                     <Link to="/admin/orderlist">admin</Link>
                   </li>
                 )}
+                {userInfo.isAdmin && (
+                  <li>
+                    <Link to="/admin/productlist">admin products</Link>
+                  </li>
+                )}
               </ul>
             </div>
           ) : (

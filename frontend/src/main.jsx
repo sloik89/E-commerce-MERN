@@ -16,6 +16,7 @@ import {
   Order,
   Profile,
   AdminOrders,
+  AdminProducts,
 } from "./Page";
 import { AdminRoute } from "./components";
 import App from "./App.jsx";
@@ -46,6 +47,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/" element={<AdminRoute />}>
         <Route path="/admin/orderlist" element={<AdminOrders />} />
+        <Route path="/admin/productlist" element={<AdminProducts />} />
       </Route>
     </Route>
   )

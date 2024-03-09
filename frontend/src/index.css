@@ -32,6 +32,27 @@ a {
 ul {
   list-style: none;
 }
+table {
+  border: 1px solid white;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: none;
+  thead {
+    font-size: 1.2rem;
+    height: 50px;
+  }
+  tr {
+    text-align: center;
+    background-color: var(--bg-nav);
+  }
+  tr:nth-child(odd) {
+    background-color: var(--bg-body);
+  }
+  td {
+    padding: 20px 10px;
+  }
+}
 img {
   max-width: 100%;
   display: block;
@@ -95,6 +116,7 @@ input:focus {
   font-weight: bold;
   color: var(--light-300);
   cursor: pointer;
+  line-height: 1.1;
 }
 .btn-trash {
   font-size: 1.1rem;
@@ -116,5 +138,10 @@ input:focus {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+.flex-around-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 /* end of global classes */

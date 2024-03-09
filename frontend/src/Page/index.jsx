@@ -9,6 +9,7 @@ import PlaceOrder from "./PlaceOrder";
 import Order from "./Order";
 import Profile from "./Profile";
 import AdminOrders from "./AdminOrders";
+import AdminProducts from "./AdminProducts";
 export {
   Home,
   Product,
@@ -21,4 +22,5 @@ export {
   Order,
   Profile,
   AdminOrders,
+  AdminProducts,
 };

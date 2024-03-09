@@ -14,4 +14,23 @@ const getSingleProduct = asyncHandler(async (req, res) => {
     throw new Error("Product not found");
   }
 });
-export { getAllProducts, getSingleProduct };
+// create products
+//  POST
+//   /api/products
+// acces private admin
+const createProduct = asyncHandler(async (req, res) => {
+  const product = new Product({
+    name: "Sample name",
+    price: 0,
+    user: req.user._id,
+    image: "/sample.jpg",
+    brand: "Sample brand",
+    category: "sample category",
+    countInStock: 0,
+    numReviews: 0,
+    description: "sample description",
+  });
+  const createdProduct = await product.save();
+  res.status(201).json(createProduct);
+});
+export { getAllProducts, getSingleProduct, createProduct };
