@@ -10,6 +10,7 @@ import Loader from "./Loader";
 import PrivateRoute from "./PrivateRoute";
 import CheckoutSteps from "./CheckoutSteps";
 import AdminRoute from "./AdminRoute";
+import CreateProduct from "./CreateProduct";
 export {
   Navbar,
   Header,
@@ -23,4 +24,5 @@ export {
   PrivateRoute,
   CheckoutSteps,
   AdminRoute,
+  CreateProduct,
 };

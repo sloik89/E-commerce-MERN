@@ -19,18 +19,23 @@ const getSingleProduct = asyncHandler(async (req, res) => {
 //   /api/products
 // acces private admin
 const createProduct = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const product = new Product({
-    name: "Sample name",
-    price: 0,
+    name: req.body.name || "Sample name",
+    price: req.body.price || 0,
     user: req.user._id,
-    image: "/sample.jpg",
-    brand: "Sample brand",
-    category: "sample category",
+    image: req.body.image || "/sample.jpg",
+    brand: req.body.brand || "Sample brand",
+    category: req.body.category || "sample category",
     countInStock: 0,
     numReviews: 0,
-    description: "sample description",
+    description: req.body.description || "sample description",
   });
   const createdProduct = await product.save();
-  res.status(201).json(createProduct);
+  res.status(201).json(createdProduct);
 });
-export { getAllProducts, getSingleProduct, createProduct };
+const updatedProduct = asyncHandler(async (req, res) => {
+  console.log("updatedProduct");
+  res.send("updatedProduct");
+});
+export { getAllProducts, getSingleProduct, createProduct, updatedProduct };

@@ -10,6 +10,7 @@ import Order from "./Order";
 import Profile from "./Profile";
 import AdminOrders from "./AdminOrders";
 import AdminProducts from "./AdminProducts";
+import AdminEditProduct from "./AdminEditProduct";
 export {
   Home,
   Product,
@@ -23,4 +24,5 @@ export {
   Profile,
   AdminOrders,
   AdminProducts,
+  AdminEditProduct,
 };

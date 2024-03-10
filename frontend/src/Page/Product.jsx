@@ -22,6 +22,7 @@ const Product = () => {
     dispatch(addToCart({ ...product, qty }));
     navigate("/cart");
   };
+  console.log(product);
   return (
     <>
       <Wrapper className="product page-full width-90 padding-block">

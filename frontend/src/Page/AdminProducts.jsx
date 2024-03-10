@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
@@ -7,24 +7,29 @@ import { Message, Loader } from "../components";
 import { FaTimes, FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { CreateProduct } from "../components";
 import Wrapper from "../wrapers/AdminProducts";
 const AdminProducts = () => {
+  const [showProduct, setShowProduct] = useState(false);
   const { data: products, isLoading, isError, refetch } = useGetProductsQuery();
-
+  const handleShow = () => {
+    setShowProduct(!showProduct);
+  };
   console.log(products);
   const [createProduct, { isLoading: createLoading, isError: createIsError }] =
     useCreateProductMutation();
   const handleCreateProduct = async () => {
-    if (window.confirm("Are you sure ?")) {
-      try {
-        await createProduct();
-        toast.success("product created");
-        refetch();
-      } catch (err) {
-        console.log(err);
-        toast.error(err?.data?.message || err.message);
-      }
-    }
+    // if (window.confirm("Are you sure ?")) {
+    //   try {
+    //     await createProduct();
+    //     toast.success("product created");
+    //     refetch();
+    //   } catch (err) {
+    //     console.log(err);
+    //     toast.error(err?.data?.message || err.message);
+    //   }
+    // }
+    setShowProduct(!showProduct);
     console.log("create");
   };
   return (
@@ -82,6 +87,7 @@ const AdminProducts = () => {
           </tbody>
         </table>
       )}
+      {showProduct && <CreateProduct handle={handleShow} />}
     </Wrapper>
   );
 };
