@@ -7,12 +7,14 @@ export const productsSlice = appSlice.injectEndpoints({
         url: "/products",
       }),
       keepUnusedDataFor: 5,
+      providesTags: ["Products"],
     }),
     getSingleProduct: builder.query({
       query: (id) => ({
         url: `/products/${id}`,
       }),
       keepUnusedDataFor: 5,
+      invalidatesTags: ["Products"],
     }),
     createProduct: builder.mutation({
       query: (product) => ({
@@ -21,7 +23,7 @@ export const productsSlice = appSlice.injectEndpoints({
         body: product,
       }),
       // fresh data you don't have to reload page
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["Products"],
     }),
     updateProduct: builder.mutation({
       query: (data) => ({
@@ -29,6 +31,7 @@ export const productsSlice = appSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["Products"],
     }),
   }),
 });

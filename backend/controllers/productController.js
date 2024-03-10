@@ -35,7 +35,30 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct);
 });
 const updatedProduct = asyncHandler(async (req, res) => {
-  console.log("updatedProduct");
-  res.send("updatedProduct");
+  const { id } = req.params;
+  const {
+    id: productId,
+    name,
+    price,
+    brand,
+    category,
+    text: description,
+    url,
+  } = req.body;
+  const product = await Product.findById(id);
+  if (product) {
+    product.name = name;
+    product.brand = brand;
+    product.category = category;
+    product.description = description;
+    product.image = url;
+    product.price = price;
+    const newProduct = await product.save();
+    res.status(201).json(newProduct);
+  } else {
+    throw new Error("Product not found");
+  }
+  console.log(name, brand, price, description);
+  res.status(200).json({ msg: "updated" });
 });
 export { getAllProducts, getSingleProduct, createProduct, updatedProduct };

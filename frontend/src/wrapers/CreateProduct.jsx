@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   overflow: hidden;
   .form {
     position: relative;
-
     width: 60%;
     max-width: 800px;
   }
@@ -37,6 +36,7 @@ const Wrapper = styled.div`
       border: none;
       padding: 0.3rem 1rem;
       font-size: 1.2rem;
+      background-color: red;
     }
   }
   .btn {
