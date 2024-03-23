@@ -5,5 +5,9 @@ const Wrapper = styled.div`
   border-radius: 1rem;
   overflow: hidden;
   background-color: var(--bg-nav);
+  img {
+    max-height: 300px;
+    width: 100%;
+  }
 `;
 export default Wrapper;

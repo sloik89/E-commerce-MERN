@@ -12,6 +12,7 @@ import Loader from "../components/Loader";
 import { addToCart } from "../slices/cartSlice";
 import { useGetSingleProductQuery } from "../slices/productSlice";
 import { FaBolt } from "react-icons/fa6";
+
 const Product = () => {
   const { id } = useParams();
   const dispatch = useDispatch();

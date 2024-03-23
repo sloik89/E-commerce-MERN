@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useUploadProductImageMutation,
+  useDeleteProductsMutation,
 } from "../slices/productSlice";
 import { Message, Loader } from "../components";
 import { FaTimes, FaEdit, FaTrash } from "react-icons/fa";
@@ -15,7 +17,8 @@ const AdminProducts = () => {
   const handleShow = () => {
     setShowProduct(!showProduct);
   };
-  console.log(products);
+  const [deleteProducts, { isLoading: deleteLoading }] =
+    useDeleteProductsMutation();
   const [createProduct, { isLoading: createLoading, isError: createIsError }] =
     useCreateProductMutation();
   const handleCreateProduct = async () => {
@@ -30,7 +33,16 @@ const AdminProducts = () => {
     //   }
     // }
     setShowProduct(!showProduct);
-    console.log("create");
+  };
+  const deleteHandler = async (id) => {
+    console.log(id);
+    try {
+      await deleteProducts(id);
+      refetch();
+      toast.success("item removed");
+    } catch (err) {
+      toast.error(err.message || "Unable to delete item");
+    }
   };
   return (
     <Wrapper className="admin-products page-full">
@@ -77,7 +89,10 @@ const AdminProducts = () => {
                         <FaEdit />
                       </button>
                     </Link>
-                    <button className="btn">
+                    <button
+                      className="btn"
+                      onClick={() => deleteHandler(product._id)}
+                    >
                       <FaTrash />
                     </button>
                   </div>

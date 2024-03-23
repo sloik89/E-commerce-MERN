@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useUploadProductImageMutation,
 } from "../slices/productSlice";
 const CreateProduct = ({ handle }) => {
   const ref = useRef(null);
@@ -14,8 +15,11 @@ const CreateProduct = ({ handle }) => {
   const [category, setCategory] = useState("electronics");
   const [url, setUrl] = useState("");
   const [text, setText] = useState("");
+  const [file, setFile] = useState("");
   const [createProduct, { isLoading: createLoading, isError: createIsError }] =
     useCreateProductMutation();
+  const [uploadProductImage, { isLoading: imageLoading, isError: imageError }] =
+    useUploadProductImageMutation();
   const handleForm = async (e) => {
     e.preventDefault();
     if (!name && !price && !brand && !category && !url && !text) {
@@ -30,6 +34,7 @@ const CreateProduct = ({ handle }) => {
       image: url,
       category,
       description: text,
+      image: file,
     };
     try {
       const res = await createProduct(product);
@@ -38,9 +43,23 @@ const CreateProduct = ({ handle }) => {
       console.log(err);
     }
   };
+  // image uploader
+  const upladFileHandler = async (e) => {
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+
+    try {
+      const res = await uploadProductImage(formData).unwrap();
+      toast.success("Image uploaded");
+      setFile(res.image);
+      console.log(res.image);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     ref.current.classList.add("animate");
-    console.log(ref.current);
+
     setTimeout(() => {
       ref.current.classList.remove("animate");
     }, 1000);
@@ -95,6 +114,15 @@ const CreateProduct = ({ handle }) => {
               <option value="electronics">Electronics</option>
               <option value="other">other</option>
             </select>
+          </div>
+          <div className="form-row">
+            <label htmlFor="file">Select file</label>
+            <input
+              onChange={upladFileHandler}
+              name="file"
+              id="file"
+              type="file"
+            />
           </div>
           <div className="form-row">
             <label htmlFor="image">Select image</label>

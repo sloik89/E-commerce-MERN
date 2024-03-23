@@ -33,6 +33,19 @@ export const productsSlice = appSlice.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
+    uploadProductImage: builder.mutation({
+      query: (data) => ({
+        url: "/uploads",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    deleteProducts: builder.mutation({
+      query: (productId) => ({
+        url: `/products/${productId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -41,4 +54,6 @@ export const {
   useGetSingleProductQuery,
   useCreateProductMutation,
   useUpdateProductMutation,
+  useUploadProductImageMutation,
+  useDeleteProductsMutation,
 } = productsSlice;
