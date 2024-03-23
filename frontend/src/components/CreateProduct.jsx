@@ -39,6 +39,7 @@ const CreateProduct = ({ handle }) => {
     try {
       const res = await createProduct(product);
       console.log(res);
+      handle();
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +48,6 @@ const CreateProduct = ({ handle }) => {
   const upladFileHandler = async (e) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
-
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success("Image uploaded");
