@@ -1,12 +1,27 @@
 import React from "react";
-import { useGetAllUsersQuery } from "../slices/userApiSlice";
+import {
+  useGetAllUsersQuery,
+  useDeleteUserMutation,
+} from "../slices/userApiSlice";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FaTimes, FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import { Loader, Message } from "../components";
 const AdminUsers = () => {
   const { data: users, refetch, isError, isLoading } = useGetAllUsersQuery();
+  const [deleteUser, { isLoading: deleteLoading, isError: errorDelete }] =
+    useDeleteUserMutation();
   console.log(users);
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     console.log(id);
+    try {
+      const res = await deleteUser(id);
+      console.log(res);
+      toast.success("item removed");
+    } catch (err) {
+      console.log(err);
+      toast.error("error");
+    }
   };
   const handleUpdate = (id) => {
     console.log(id);
@@ -38,10 +53,13 @@ const AdminUsers = () => {
                 <td>{user.isAdmin ? <FaCheck /> : <FaTimes />}</td>
                 <td>{user.createdAt.substring(0, 10)}</td>
                 <td>
-                  <button className="btn" onClick={handleUpdate(user._id)}>
+                  <Link className="btn" to={`/admin/${user._id}/edit`}>
                     <FaEdit />
-                  </button>
-                  <button className="btn" onClick={handleDelete(user._id)}>
+                  </Link>
+                  <button
+                    className="btn"
+                    onClick={() => handleDelete(user._id)}
+                  >
                     <FaTrash />
                   </button>
                 </td>

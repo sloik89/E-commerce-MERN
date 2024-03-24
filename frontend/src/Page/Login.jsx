@@ -64,6 +64,24 @@ const Login = () => {
           <button disabled={isLoading} type="submit" className="btn btn-login">
             Sign In
           </button>
+          <button
+            className="btn"
+            onClick={() => {
+              setEmail("admin@email.com");
+              setPswd("123456");
+            }}
+          >
+            Test admin
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              setEmail("johndoe@email.com");
+              setPswd("123456");
+            }}
+          >
+            Test user
+          </button>
           {isLoading && <Loader />}
           <div className="form-row">
             <p>

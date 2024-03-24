@@ -7,7 +7,7 @@ import {
   useCreateProductMutation,
   useUploadProductImageMutation,
 } from "../slices/productSlice";
-const CreateProduct = ({ handle }) => {
+const CreateProduct = ({ handle, show }) => {
   const ref = useRef(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -58,12 +58,16 @@ const CreateProduct = ({ handle }) => {
     }
   };
   useEffect(() => {
-    ref.current.classList.add("animate");
-
-    setTimeout(() => {
-      ref.current.classList.remove("animate");
-    }, 1000);
-  }, []);
+    if (show) {
+      ref.current.classList.add("animate");
+      const timeout = setTimeout(() => {
+        ref.current.classList.remove("animate");
+      }, 1000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [show]);
   return (
     <Wrapper>
       <div className="form">

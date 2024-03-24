@@ -24,6 +24,13 @@ const Wrapper = styled.div`
       background-color: transparent;
       color: var(--light-100);
     }
+    .checbox-row {
+      display: flex;
+      flex-direction: row;
+    }
+    .checkbox {
+      align-self: center;
+    }
     select {
       background-color: transparent;
       border: 2px solid var(--violet);

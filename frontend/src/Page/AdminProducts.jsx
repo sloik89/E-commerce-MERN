@@ -102,7 +102,7 @@ const AdminProducts = () => {
           </tbody>
         </table>
       )}
-      {showProduct && <CreateProduct handle={handleShow} />}
+      {showProduct && <CreateProduct handle={handleShow} show={showProduct} />}
     </Wrapper>
   );
 };
