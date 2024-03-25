@@ -13,6 +13,7 @@ import AdminProducts from "./AdminProducts";
 import AdminEditProduct from "./AdminEditProduct";
 import AdminUsers from "./AdminUsers";
 import AdminEditUser from "./AdminEditUser";
+import Stars from "../components/Stars";
 export {
   Home,
   Product,
@@ -29,4 +30,5 @@ export {
   AdminEditProduct,
   AdminUsers,
   AdminEditUser,
+  Stars,
 };

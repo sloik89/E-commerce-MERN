@@ -4,26 +4,66 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { LuPlus } from "react-icons/lu";
 import { HiMinusSm } from "react-icons/hi";
-import { InputQty } from "../components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../wrapers/Product";
 import { Message } from "../components";
 import Loader from "../components/Loader";
+import { toast } from "react-toastify";
 import { addToCart } from "../slices/cartSlice";
-import { useGetSingleProductQuery } from "../slices/productSlice";
+
+import {
+  useGetSingleProductQuery,
+  useCreateProductReviewsMutation,
+} from "../slices/productSlice";
 import { FaBolt } from "react-icons/fa6";
 
 const Product = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
-  const { data: product, isLoading, isError } = useGetSingleProductQuery(id);
+  const [rating, setRating] = useState("");
+  const [comment, setComment] = useState("");
+  const {
+    data: product,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetSingleProductQuery(id);
+  const [createProductReviews, { isLoading: loadingReviews, isError: error }] =
+    useCreateProductReviewsMutation();
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
     navigate("/cart");
   };
-  console.log(product);
+
+  const handleComment = async (e) => {
+    e.preventDefault();
+    if (!rating && !comment) {
+      toast.error("Please fill the fields");
+      return;
+    }
+    try {
+      const res = await createProductReviews({
+        comment,
+        rating,
+        productId: id,
+      });
+
+      if (res.error?.status === 400) {
+        throw new Error(res.error.data.message);
+      }
+      toast.success("Review added");
+      setRating("");
+      setComment("");
+      refetch();
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.message || "Unable to put comment");
+    }
+    console.log(comment, rating);
+  };
   return (
     <>
       <Wrapper className="product page-full width-90 padding-block">
@@ -93,6 +133,56 @@ const Product = () => {
               </div>
             </div>
           </div>
+        )}
+        {product?.reviews.reviews.length === 0 ? (
+          <Message>No reviews</Message>
+        ) : (
+          <div className="product-reviews">
+            <h3>Reviews</h3>
+            {product?.reviews.reviews.map((item) => {
+              return (
+                <div key={item._id}>
+                  <p>{item.name}</p>
+                  <p>{item.comment}</p>
+                  <Stars rating={item.rating} />
+                </div>
+              );
+            })}
+          </div>
+        )}
+        {userInfo ? (
+          <form className="form-comment" onSubmit={handleComment}>
+            <h3>Comment Product</h3>
+            <div className="form-row">
+              <label htmlFor="rating">Rating</label>
+              <select
+                name="rating"
+                id="rating"
+                value={rating}
+                onChange={(e) => setRating(Number(e.target.value))}
+              >
+                <option value="">Select...</option>
+                <option value="1">1-Poor</option>
+                <option value="2">2-Fair</option>
+                <option value="3">3-Good</option>
+                <option value="4">4-Very Good</option>
+                <option value="5">4-Exelent</option>
+              </select>
+            </div>
+            <div className="form-row">
+              <label htmlFor="comment">Comment</label>
+              <textarea
+                onChange={(e) => setComment(e.target.value)}
+                name="comment"
+                value={comment}
+              ></textarea>
+            </div>
+            <button type="submit" className="btn">
+              Comment
+            </button>
+          </form>
+        ) : (
+          <Message>You need to login in to put a comment </Message>
         )}
       </Wrapper>
     </>

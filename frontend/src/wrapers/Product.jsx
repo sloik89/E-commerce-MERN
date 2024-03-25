@@ -25,6 +25,39 @@ const Wrapper = styled.div`
       font-size: 2.5rem;
     }
   }
+
+  .form-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 0;
+    select {
+      align-self: flex-start;
+    }
+    label {
+      font-size: 1.3rem;
+    }
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    button {
+      align-self: center;
+    }
+
+    textarea {
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-radius: 0.5rem;
+    }
+    textarea:focus {
+      outline: 2px solid var(--violet);
+    }
+  }
+  .product-reviews {
+    margin-top: 2rem;
+  }
   .input-container {
     position: relative;
     background-color: var(--bg-body);

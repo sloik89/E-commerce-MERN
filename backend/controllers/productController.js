@@ -1,9 +1,14 @@
 import Product from "../models/product.js";
 import asyncHandler from "../middleware/asyncHandlers.js";
 const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
-
-  res.json(products);
+  const pageSize = 2;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Product.countDocuments();
+  const products = await Product.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  console.log(count);
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 const getSingleProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
@@ -76,11 +81,43 @@ const deleteProduct = asyncHandler(async (req, res) => {
     throw new Error("Resource not found");
   }
 });
-
+const createProductReviews = asyncHandler(async (req, res) => {
+  const { rating, comment } = req.body;
+  console.log(`user= ${req.user._id}`);
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    // user can have one comment per product
+    const alredyComment = product.reviews.reviews.find(
+      (item) => item.user.toString() === req.user._id.toString()
+    );
+    if (alredyComment) {
+      res.status(400);
+      throw new Error("Product allready comment");
+    }
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+    product.reviews.reviews.push(review);
+    product.numReviews = product.reviews.reviews.length;
+    product.rating =
+      product.reviews.reviews.reduce((acc, review) => acc + review.rating, 0) /
+      product.reviews.reviews.length;
+    await product.save();
+    res.status(201).json({ message: "Review added" });
+  } else {
+    res.status(404);
+    throw new Error("Resource not found");
+  }
+  console.log(`product= ${product.rating}`);
+});
 export {
   getAllProducts,
   getSingleProduct,
   createProduct,
   updatedProduct,
   deleteProduct,
+  createProductReviews,
 };
