@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import CheckoutSteps from "./CheckoutSteps";
 import AdminRoute from "./AdminRoute";
 import CreateProduct from "./CreateProduct";
+import Pagination from "./Pagination";
 export {
   Navbar,
   Header,
@@ -25,4 +26,5 @@ export {
   CheckoutSteps,
   AdminRoute,
   CreateProduct,
+  Pagination,
 };

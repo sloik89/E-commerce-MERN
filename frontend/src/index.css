@@ -144,4 +144,19 @@ input:focus {
   justify-content: space-between;
   align-items: center;
 }
+.pagination {
+  font-size: 1.2rem;
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+
+  width: fit-content;
+}
+.pagination a {
+  border: 1px solid var(--light-200);
+  padding: 0.2rem 0.5rem;
+}
+.pagination .active {
+  background-color: var(--violet);
+}
 /* end of global classes */

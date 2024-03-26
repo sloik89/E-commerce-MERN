@@ -7,13 +7,16 @@ import {
 } from "../slices/productSlice";
 import { Message, Loader } from "../components";
 import { FaTimes, FaEdit, FaTrash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { CreateProduct } from "../components";
 import Wrapper from "../wrapers/AdminProducts";
 const AdminProducts = () => {
+  const { pageNumber } = useParams();
   const [showProduct, setShowProduct] = useState(false);
-  const { data: products, isLoading, isError, refetch } = useGetProductsQuery();
+  const { data, isLoading, isError, refetch } = useGetProductsQuery({
+    pageNumber,
+  });
   const handleShow = () => {
     setShowProduct(!showProduct);
   };
@@ -68,7 +71,7 @@ const AdminProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {data.products.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>
