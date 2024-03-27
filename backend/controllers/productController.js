@@ -1,7 +1,7 @@
 import Product from "../models/product.js";
 import asyncHandler from "../middleware/asyncHandlers.js";
 const getAllProducts = asyncHandler(async (req, res) => {
-  const pageSize = 2;
+  const pageSize = 5;
   const page = Number(req.query.pageNumber) || 1;
   const keyword = req.query.keyword
     ? { name: { $regex: `${req.query.keyword}`, $options: "i" } }
@@ -117,6 +117,16 @@ const createProductReviews = asyncHandler(async (req, res) => {
   }
   console.log(`product= ${product.rating}`);
 });
+const getFeaturedProducts = asyncHandler(async (req, res) => {
+  console.log("jestem featured");
+  const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+  if (products) {
+    res.status(200).json(products);
+  } else {
+    res.status(404);
+    throw new Error("products not found");
+  }
+});
 export {
   getAllProducts,
   getSingleProduct,
@@ -124,4 +134,5 @@ export {
   updatedProduct,
   deleteProduct,
   createProductReviews,
+  getFeaturedProducts,
 };

@@ -59,6 +59,12 @@ export const productsSlice = appSlice.injectEndpoints({
       },
       invalidatesTags: ["Products"],
     }),
+    getFeaturedProducts: builder.query({
+      query: () => ({
+        url: "/products/gallery",
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
@@ -70,4 +76,5 @@ export const {
   useUploadProductImageMutation,
   useDeleteProductsMutation,
   useCreateProductReviewsMutation,
+  useGetFeaturedProductsQuery,
 } = productsSlice;

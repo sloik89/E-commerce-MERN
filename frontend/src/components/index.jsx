@@ -13,6 +13,7 @@ import AdminRoute from "./AdminRoute";
 import CreateProduct from "./CreateProduct";
 import Pagination from "./Pagination";
 import Search from "./Search";
+import Carousel from "./Carousel";
 export {
   Navbar,
   Header,
@@ -29,4 +30,5 @@ export {
   CreateProduct,
   Pagination,
   Search,
+  Carousel,
 };
