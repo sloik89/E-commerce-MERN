@@ -6,21 +6,35 @@ import { Loader } from "../components";
 import { useParams } from "react-router-dom";
 import { Pagination } from "../components";
 const Home = () => {
-  const { pageNumber } = useParams();
-  const { data, isLoading, isError } = useGetProductsQuery({ pageNumber });
-  console.log(isError);
+  const { pageNumber, keyword } = useParams();
+  const { data, isLoading, isError } = useGetProductsQuery({
+    pageNumber,
+    keyword,
+  });
+
   if (isLoading) {
     return <Loader />;
   }
   return (
     <div className="home page-full">
-      <h1>Latest products</h1>
+      {data.products.length === 0 ? (
+        <div>
+          <h3> No products </h3>
+        </div>
+      ) : (
+        <h1>Latest products</h1>
+      )}
+
       <Wrapper>
         {data.products.map((item) => {
           return <Card key={item._id} product={item} />;
         })}
       </Wrapper>
-      <Pagination pages={data.pages} page={data.page} />
+      <Pagination
+        pages={data.pages}
+        page={data.page}
+        keyword={keyword ? keyword : ""}
+      />
     </div>
   );
 };

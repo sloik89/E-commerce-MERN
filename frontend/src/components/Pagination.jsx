@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Pagination = ({ pages, page, isAdmin = false }) => {
-  console.log(pages, page);
-
+const Pagination = ({ pages, page, isAdmin = false, keyword }) => {
   return (
     pages > 1 && (
       <div className="pagination">
@@ -11,7 +9,13 @@ const Pagination = ({ pages, page, isAdmin = false }) => {
             <Link
               className={`btn-pagination ${item + 1 === page ? "active" : ""}`}
               key={item}
-              to={!isAdmin ? `/page/${item + 1}` : ``}
+              to={
+                !isAdmin
+                  ? keyword
+                    ? `/search/${keyword}/page/${item + 1}`
+                    : `/page/${item + 1}`
+                  : `/admin/productlist/${item + 1}`
+              }
             >
               {item + 1}
             </Link>

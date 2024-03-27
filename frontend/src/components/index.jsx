@@ -12,6 +12,7 @@ import CheckoutSteps from "./CheckoutSteps";
 import AdminRoute from "./AdminRoute";
 import CreateProduct from "./CreateProduct";
 import Pagination from "./Pagination";
+import Search from "./Search";
 export {
   Navbar,
   Header,
@@ -27,4 +28,5 @@ export {
   AdminRoute,
   CreateProduct,
   Pagination,
+  Search,
 };

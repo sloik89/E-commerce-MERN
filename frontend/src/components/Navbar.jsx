@@ -8,6 +8,7 @@ import Wrapper from "../wrapers/Navbar";
 import { useSelector } from "react-redux";
 import { logout } from "../slices/authSlices";
 import { useDispatch } from "react-redux";
+import { Search } from "./";
 import { useLogoutUserMutation } from "../slices/userApiSlice";
 const Navbar = () => {
   const [logoutUser] = useLogoutUserMutation();
@@ -34,6 +35,7 @@ const Navbar = () => {
         <button className="hamburger" onClick={() => setShow(!show)}>
           <GiHamburgerMenu />
         </button>
+        <Search />
         <div className={`auth-container ${show ? "show" : "hide"}`}>
           <Link to="/cart">
             <span className="total-cart flex-center">

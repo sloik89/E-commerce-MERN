@@ -158,3 +158,50 @@ useEffect(() => {
   <RouterProvider router={router} />
 </PayPalScriptProvider>
 ```
+
+### Pagination
+
+- On server
+  - pageSize is a products display per page
+  - page is sendig from frontend by useParams, default 1
+  - count calculate all products
+  ```js
+  const pageSize = 4;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Product.countDocuments();
+  const products = await Product.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  console.log(count);
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
+  ```
+- On frontend
+  - pages and page comes from backend
+
+```js
+const Pagination = ({ pages, page, isAdmin = false, keyword }) => {
+  return (
+    pages > 1 && (
+      <div className="pagination">
+        {[...Array(pages).keys()].map((item) => {
+          return (
+            <Link
+              className={`btn-pagination ${item + 1 === page ? "active" : ""}`}
+              key={item}
+              to={
+                !isAdmin
+                  ? keyword
+                    ? `/search/${keyword}/page/${item + 1}`
+                    : `/page/${item + 1}`
+                  : `/admin/productlist/${item + 1}`
+              }
+            >
+              {item + 1}
+            </Link>
+          );
+        })}
+      </div>
+    )
+  );
+};
+```
