@@ -11,7 +11,7 @@ const AdminUsers = () => {
   const { data: users, refetch, isError, isLoading } = useGetAllUsersQuery();
   const [deleteUser, { isLoading: deleteLoading, isError: errorDelete }] =
     useDeleteUserMutation();
-  console.log(users);
+
   const handleDelete = async (id) => {
     console.log(id);
     try {

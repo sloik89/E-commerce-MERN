@@ -34,7 +34,6 @@ const Order = () => {
     error: errorPayPal,
   } = useGetPayPalCientIdQuery();
   const updateDeleiverd = async () => {
-    console.log("updated delivery");
     try {
       const deliver = await deliverOrder(orderId);
       refetch();

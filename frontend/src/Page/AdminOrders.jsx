@@ -7,7 +7,7 @@ import { useDeliverOrderMutation } from "../slices/ordersSlices";
 import Wrapper from "../wrapers/Profile";
 const AdminOrders = () => {
   const { data, isLoading, isError } = useGetAllOrdersQuery();
-  console.log(data);
+
   return (
     <Wrapper className="page-full">
       <h1>Orders</h1>

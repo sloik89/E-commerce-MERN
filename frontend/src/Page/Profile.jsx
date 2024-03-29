@@ -20,7 +20,7 @@ const Profile = () => {
     isLoading,
     isError: errorOrders,
   } = useGetMyOrdersQuery();
-  console.log(errorOrders);
+
   const [profile, { isLoading: loadingProfile, isError: errorLoading }] =
     useProfileMutation();
 
@@ -46,13 +46,14 @@ const Profile = () => {
       }
     }
   };
+
   useEffect(() => {
     if (userInfo) {
       setName(userInfo.name);
       setEmail(userInfo.email);
     }
   }, [userInfo.name, userInfo.email]);
-  console.log(orders);
+
   return (
     <Wrapper>
       <div className="profile page-full">
@@ -122,46 +123,50 @@ const Profile = () => {
           ) : (
             <div className="profile-orders">
               <h3>My orders</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>DATE</th>
-                    <th>TOTAL</th>
-                    <th>PAID</th>
-                    <th>DELIVERED</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.map((order, id) => (
-                    <tr key={order._id}>
-                      <td>{order._id}</td>
-                      <td>{order.createdAt.substring(0, 10)}</td>
-                      <td>{order.totalPrice}</td>
-                      <td>
-                        {order.isPaid ? (
-                          order.paidAt.substring(0, 10)
-                        ) : (
-                          <FaTimes style={{ color: "red" }} />
-                        )}
-                      </td>
-                      <td>
-                        {order.isDelivered ? (
-                          order.updatedAt.substring(0, 10)
-                        ) : (
-                          <FaTimes style={{ color: "red" }} />
-                        )}
-                      </td>
-                      <td>
-                        <Link className="btn" to={`/order/${order._id}`}>
-                          Details
-                        </Link>
-                      </td>
+              {orders.length === 0 ? (
+                <h3>No orders to display</h3>
+              ) : (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>DATE</th>
+                      <th>TOTAL</th>
+                      <th>PAID</th>
+                      <th>DELIVERED</th>
+                      <th></th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {orders.map((order, id) => (
+                      <tr key={order._id}>
+                        <td>{order._id}</td>
+                        <td>{order.createdAt.substring(0, 10)}</td>
+                        <td>{order.totalPrice}</td>
+                        <td>
+                          {order.isPaid ? (
+                            order.paidAt.substring(0, 10)
+                          ) : (
+                            <FaTimes style={{ color: "red" }} />
+                          )}
+                        </td>
+                        <td>
+                          {order.isDelivered ? (
+                            order.updatedAt.substring(0, 10)
+                          ) : (
+                            <FaTimes style={{ color: "red" }} />
+                          )}
+                        </td>
+                        <td>
+                          <Link className="btn" to={`/order/${order._id}`}>
+                            Details
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           )}
         </div>

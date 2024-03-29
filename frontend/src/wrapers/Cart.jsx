@@ -21,5 +21,30 @@ const Wrapper = styled.div`
       width: 200px;
     }
   }
+  .btn {
+    margin-left: 1rem;
+  }
+  .subtotal-info {
+    gap: 1rem;
+
+    .subtotal-price {
+      font-size: 1rem;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+  }
+  .subtotal {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    h3 {
+      font-size: 2rem;
+      color: var(--light-300);
+    }
+  }
+  .subtotal .btn {
+    align-self: center;
+  }
 `;
 export default Wrapper;

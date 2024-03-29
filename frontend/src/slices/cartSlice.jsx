@@ -9,8 +9,6 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log(action.payload);
-
       // actual value sending from frontend
       const item = action.payload;
       // check if item already exsist
@@ -28,7 +26,6 @@ const cartSlice = createSlice({
       return updateCart(state);
     },
     removeFromCart: (state, action) => {
-      console.log(action.payload);
       state.cartItems = state.cartItems.filter(
         (item) => item._id !== action.payload
       );
@@ -40,7 +37,6 @@ const cartSlice = createSlice({
       return updateCart(state);
     },
     savePaymentMethod: (state, action) => {
-      console.log(action);
       state.paymentMethod = action.payload;
       return updateCart(state);
     },

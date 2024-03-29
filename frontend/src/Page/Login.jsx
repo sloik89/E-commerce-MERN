@@ -13,10 +13,10 @@ const Login = () => {
   const [login, { isLoading }] = useLoginMutation();
   const { userInfo } = useSelector((state) => state.auth);
   const { search } = useLocation();
-  console.log(search);
+
   const url = new URLSearchParams(search);
   const redirect = url.get("redirect") || "/";
-  console.log(redirect);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +26,7 @@ const Login = () => {
   }, [userInfo, redirect, navigate]);
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submit");
+
     try {
       const res = await login({ email, password: pswd }).unwrap();
 

@@ -9,8 +9,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentail: (state, action) => {
-      console.log("invoke set credentail");
-      console.log(action.payload);
       state.userInfo = action.payload;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));
     },

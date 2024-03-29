@@ -21,7 +21,7 @@ const Cart = () => {
     <Wrapper className="page-full ">
       <h1>Shopping Cart</h1>
       {cartItems.length === 0 ? (
-        <div className="message">
+        <div className="message flex-center">
           Your cart is empty
           <Link className="btn" to="/">
             Go back
@@ -52,12 +52,15 @@ const Cart = () => {
             })}
           </ul>
           <div className="subtotal">
-            <h3>Subtotoal</h3>
-            <p className="subtotal-price">
-              {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(2)}
-            </p>
+            <div className="subtotal-info flex-center">
+              <h3>Subtotal:</h3>
+              <p className="subtotal-price">
+                $
+                {cartItems
+                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .toFixed(2)}
+              </p>
+            </div>
             <Link onClick={proccedCheckout} className="btn">
               Procced to checkout
             </Link>
