@@ -101,8 +101,8 @@ const Order = () => {
       {isLoading ? (
         <Loader />
       ) : isError ? (
-        <Message>
-          <h2>unable to fetch orders</h2>
+        <Message variants="danger">
+          <p>unable to fetch orders</p>
         </Message>
       ) : (
         <div className="orders">
@@ -112,16 +112,29 @@ const Order = () => {
             <h4>Name: {order.user.name}</h4>
             <h4>Email: {order.user.email}</h4>
             <h4>Adress: {Object.values(order.shippingAddress).join(", ")}</h4>
-            <Message variants="danger-message">
-              <p>{order.isDelivered ? "Delivered" : "Not delivered"}</p>
-            </Message>
+            <h4>Is Delivered</h4>
+            {order.isDelivered ? (
+              <Message>
+                <p>Delivered</p>
+              </Message>
+            ) : (
+              <Message variants="danger">
+                <p>Not Delivered</p>
+              </Message>
+            )}
           </div>
           <div className="orders-payment">
             <h3>Payment Method: {order.paymentMethod}</h3>
-            <h4>Method {order.isPaid}</h4>
-            <Message variants="danger-message">
-              <p>{order.isPaid ? "Paid" : "Not Paid"}</p>
-            </Message>
+            <h4>Is Paid {order.isPaid}</h4>
+            {order.isPaid ? (
+              <Message>
+                <p>Paid</p>
+              </Message>
+            ) : (
+              <Message variants="danger">
+                <p>Not paid</p>
+              </Message>
+            )}
           </div>
           <div className="orders-items">
             <h3>Order items</h3>
@@ -135,7 +148,7 @@ const Order = () => {
                     </div>
                     <div className="order-summary">
                       <p>
-                        {item.qty} x {item.price} = {item.qty * item.price}
+                        {item.qty} x {item.price} = ${item.qty * item.price}
                       </p>
                     </div>
                   </div>
@@ -148,19 +161,19 @@ const Order = () => {
             <div className="orders-detail">
               <div className="orders-detail-item">
                 <p>Items:</p>
-                <p>{order.itemsPrice}</p>
+                <p>${order.itemsPrice}</p>
               </div>
               <div className="orders-detail-item">
                 <p>Tax:</p>
-                <p>{order.taxPrice}</p>
+                <p>${order.taxPrice}</p>
               </div>
               <div className="orders-detail-item">
                 <p>Shipping:</p>
-                <p>{order.shippingPrice}</p>
+                <p>${order.shippingPrice}</p>
               </div>
               <div className="orders-detail-item">
                 <p>Total:</p>
-                <p>{order.totalPrice}</p>
+                <p className="total-summary">${order.totalPrice}</p>
               </div>
             </div>
           </div>
@@ -171,8 +184,8 @@ const Order = () => {
                 {isPending ? (
                   <Loader />
                 ) : (
-                  <div>
-                    <button onClick={onApproveTest} className="btn">
+                  <div className="paypal-wrapper">
+                    <button onClick={onApproveTest} className="btn btn-test">
                       Test Pay order
                     </button>
                     <div>

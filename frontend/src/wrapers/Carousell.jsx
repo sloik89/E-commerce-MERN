@@ -13,12 +13,19 @@ const Wrapper = styled.div`
   }
   .carousel-desc {
     position: absolute;
-    top: 60%;
+    bottom: 0;
     right: 0;
-    height: 70px;
+    height: 100px;
     z-index: 999;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .link {
+    font-size: 2rem;
   }
   .item-bg {
     width: 50px;

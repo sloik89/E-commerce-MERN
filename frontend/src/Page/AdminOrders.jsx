@@ -9,7 +9,7 @@ const AdminOrders = () => {
   const { data, isLoading, isError } = useGetAllOrdersQuery();
   console.log(data);
   return (
-    <Wrapper>
+    <Wrapper className="page-full">
       <h1>Orders</h1>
       {isLoading ? (
         <Loader />
@@ -33,10 +33,14 @@ const AdminOrders = () => {
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.user && order.user.name}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>{order.createdAt}</td>
                   <td>{order.totalPrice}</td>
                   <td>
-                    {order.isPaid ? order.paidAt.substring(0, 10) : <FaTimes />}
+                    {order.isPaid ? (
+                      order.updatedAt.substring(0, 10)
+                    ) : (
+                      <FaTimes />
+                    )}
                   </td>
                   <td>
                     {order.isDelivered ? (

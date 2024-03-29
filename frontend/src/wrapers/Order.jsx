@@ -47,9 +47,19 @@ const Wrapper = styled.div`
     }
   }
   .paypal-container {
-    border: 1px solid red;
     align-self: center;
     width: 50%;
+  }
+  .btn-test {
+    margin: 1rem 0;
+  }
+  .paypal-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .total-summary {
+    font-size: 2rem;
+    font-weight: bold;
   }
 `;
 export default Wrapper;

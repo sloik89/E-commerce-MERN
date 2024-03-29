@@ -17,7 +17,7 @@ export const productsSlice = appSlice.injectEndpoints({
         url: `/products/${id}`,
       }),
       keepUnusedDataFor: 5,
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["Products"],
     }),
     createProduct: builder.mutation({
       query: (product) => ({

@@ -26,9 +26,7 @@ const Navbar = () => {
       toast.error("something went wrong");
     }
   };
-  useEffect(() => {
-    console.log(showDropdown);
-  }, [showDropdown]);
+  useEffect(() => {}, [showDropdown]);
   return (
     <Wrapper className="flex-center ">
       <div
@@ -74,7 +72,7 @@ const Navbar = () => {
                 </li>
                 {userInfo.isAdmin && (
                   <li>
-                    <Link to="/admin/orderlist">admin</Link>
+                    <Link to="/admin/orderlist">orders</Link>
                   </li>
                 )}
                 {userInfo.isAdmin && (

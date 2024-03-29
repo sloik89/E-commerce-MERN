@@ -77,7 +77,6 @@ const Product = () => {
               <Link to="/" className="btn">
                 Go back
               </Link>
-              <Message variants="success-message">hello</Message>
               <h3>{product.name}</h3>
               <div className="product-reviews">
                 <Stars rating={product.rating} revievs={product.numReviews} />
@@ -129,7 +128,15 @@ const Product = () => {
                 <button onClick={addToCartHandler} className="btn">
                   Add to Cart
                 </button>
-                <button className="btn">Buy Now</button>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    dispatch(addToCart({ ...product, qty }));
+                    navigate("/shipping");
+                  }}
+                >
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>

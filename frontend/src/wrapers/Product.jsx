@@ -5,6 +5,14 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 2rem;
   }
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .btn {
+      align-self: start;
+    }
+  }
   .product-result {
     background-color: var(--bg-nav);
     color: var(--light-300);

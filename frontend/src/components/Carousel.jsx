@@ -1,7 +1,7 @@
 import React from "react";
 import Wrapper from "../wrapers/Carousell";
 import Slider from "react-slick";
-
+import { Link } from "react-router-dom";
 const Carousel = ({ products }) => {
   const settings = {
     dots: true,
@@ -15,10 +15,14 @@ const Carousel = ({ products }) => {
     <Wrapper>
       <div className="main-slider">
         <Slider {...settings}>
-          {products.map((itme) => (
-            <div className="slider">
-              <img className="carousel-img" src={itme.image} alt="" />
-              <h3 className="carousel-desc">{itme.name}</h3>
+          {products.map((item) => (
+            <div key={item._id} className="slider">
+              <img className="carousel-img" src={item.image} alt="" />
+              <div className="carousel-desc">
+                <Link to={`/product/${item._id}`} className="link">
+                  {item.name}
+                </Link>
+              </div>
             </div>
           ))}
         </Slider>

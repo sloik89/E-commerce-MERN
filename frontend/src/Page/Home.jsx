@@ -18,8 +18,8 @@ const Home = () => {
     isLoading: featuredLoading,
     isError: errorFeatured,
   } = useGetFeaturedProductsQuery();
-  console.log(featured);
-  if (isLoading) {
+
+  if (isLoading || featuredLoading) {
     return <Loader />;
   }
   return (
