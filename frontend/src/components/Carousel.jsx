@@ -13,14 +13,16 @@ const Carousel = ({ products }) => {
 
   return (
     <Wrapper>
-      <Slider {...settings}>
-        {products.map((itme) => (
-          <div className="slider">
-            <img className="carousel-img" src={itme.image} alt="" />
-            <h3 className="carousel-desc">{itme.name}</h3>
-          </div>
-        ))}
-      </Slider>
+      <div className="main-slider">
+        <Slider {...settings}>
+          {products.map((itme) => (
+            <div className="slider">
+              <img className="carousel-img" src={itme.image} alt="" />
+              <h3 className="carousel-desc">{itme.name}</h3>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </Wrapper>
   );
 };

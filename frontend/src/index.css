@@ -8,6 +8,7 @@
   line-height: 1.5;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.87);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,6 +21,7 @@
   --light-400: rgb(238, 231, 231);
   --light-300: rgb(180, 172, 172);
   --light-200: rgb(146, 139, 139);
+  /* --transition-btn: all 0.3s linear; */
 }
 body {
   color: white;
@@ -158,5 +160,11 @@ input:focus {
 }
 .pagination .active {
   background-color: var(--violet);
+}
+.main-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-block: 2rem;
+  text-transform: capitalize;
 }
 /* end of global classes */

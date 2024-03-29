@@ -30,15 +30,18 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          <h1>Latest products</h1>
+          <h1 className="main-title">Best ranking products</h1>
           <Carousel products={featured} />
         </div>
       )}
 
       <Wrapper>
-        {data.products.map((item) => {
-          return <Card key={item._id} product={item} />;
-        })}
+        <h2 className="main-title">Our Products</h2>
+        <div className="products-container">
+          {data.products.map((item) => {
+            return <Card key={item._id} product={item} />;
+          })}
+        </div>
       </Wrapper>
       <Pagination
         pages={data.pages}

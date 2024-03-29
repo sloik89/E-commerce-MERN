@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
@@ -20,22 +20,30 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const res = await logoutUser().unwrap();
-      console.log(res);
+
       dispatch(logout());
     } catch (err) {
       toast.error("something went wrong");
     }
   };
+  useEffect(() => {
+    console.log(showDropdown);
+  }, [showDropdown]);
   return (
     <Wrapper className="flex-center ">
-      <div className="section-center width-90">
+      <div
+        onClick={() => {
+          showDropdown && setShowDropdown(false);
+        }}
+        className="section-center width-90"
+      >
         <Link className="logo" to="/">
           logo
         </Link>
         <button className="hamburger" onClick={() => setShow(!show)}>
           <GiHamburgerMenu />
         </button>
-        <Search />
+        <Search className="search" />
         <div className={`auth-container ${show ? "show" : "hide"}`}>
           <Link to="/cart">
             <span className="total-cart flex-center">
@@ -45,10 +53,13 @@ const Navbar = () => {
           </Link>
           {userInfo ? (
             <div className="dropdown">
-              <p onClick={() => setShowDropdown(!showDropdown)}>
+              <button
+                className="btn btn-user"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
                 {userInfo.name}
                 {showDropdown ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
-              </p>
+              </button>
               <ul className={`dropdown-list ${showDropdown ? "show" : "hide"}`}>
                 {!userInfo.isAdmin && (
                   <li>
@@ -57,7 +68,9 @@ const Navbar = () => {
                 )}
 
                 <li>
-                  <button onClick={handleLogout}> logout</button>
+                  <button className="logout" onClick={handleLogout}>
+                    logout
+                  </button>
                 </li>
                 {userInfo.isAdmin && (
                   <li>

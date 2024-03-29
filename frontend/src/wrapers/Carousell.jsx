@@ -1,6 +1,12 @@
 import styled from "styled-components";
 const Wrapper = styled.div`
-  margin: 5rem 0;
+  display: flex;
+  justify-content: center;
+  .main-slider {
+    margin: 0;
+    width: 90%;
+  }
+
   .slider {
     background-color: var(--violet);
     position: relative;
@@ -21,7 +27,7 @@ const Wrapper = styled.div`
   }
 
   .slick-list {
-    height: 300px;
+    /* height: 500px; */
     position: relative;
   }
   .carousel-img {

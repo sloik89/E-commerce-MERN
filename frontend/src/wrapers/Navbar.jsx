@@ -43,6 +43,11 @@ const Wrapper = styled.nav`
       position: relative;
       a {
         color: inherit;
+        transition: all 0.05s linear;
+      }
+      a:hover {
+        padding-left: 5px;
+        color: var(--light-300);
       }
     }
     .dropdown-list {
@@ -62,6 +67,19 @@ const Wrapper = styled.nav`
       padding: 0;
       height: 0;
     }
+    .btn-user {
+      font-size: 0.8rem;
+    }
+    .logout {
+      font-size: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.05s linear;
+    }
+    .logout:hover {
+      padding-left: 5px;
+      color: var(--light-300);
+    }
     @media (min-width: 768px) {
       .hamburger {
         display: none;
@@ -71,6 +89,8 @@ const Wrapper = styled.nav`
       }
       .auth-container.show {
         flex: 0 0 auto;
+      }
+      .search {
       }
     }
   }
