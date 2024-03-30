@@ -5,7 +5,7 @@ import Card from "./Card";
 import Stars from "./Stars";
 import Message from "./Message";
 import InputQty from "./InputQty";
-// import FormContainer from "./FormContainer";
+import FormContainer from "./FormContainer";
 import Loader from "./Loader";
 import PrivateRoute from "./PrivateRoute";
 import CheckoutSteps from "./CheckoutSteps";
@@ -23,7 +23,7 @@ export {
   Stars,
   Message,
   InputQty,
-  // FormContainer,
+  FormContainer,
   Loader,
   PrivateRoute,
   CheckoutSteps,
