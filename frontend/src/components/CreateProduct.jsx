@@ -13,7 +13,7 @@ const CreateProduct = ({ handle, show }) => {
   const [price, setPrice] = useState("");
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("electronics");
-  const [url, setUrl] = useState("");
+
   const [text, setText] = useState("");
   const [file, setFile] = useState("");
   const [createProduct, { isLoading: createLoading, isError: createIsError }] =
@@ -31,7 +31,6 @@ const CreateProduct = ({ handle, show }) => {
       name,
       price,
       brand,
-      image: url,
       category,
       description: text,
       image: file,
@@ -128,16 +127,7 @@ const CreateProduct = ({ handle, show }) => {
               type="file"
             />
           </div>
-          <div className="form-row">
-            <label htmlFor="image">Select image</label>
-            <input
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              type="url"
-              id="image"
-              name="image"
-            />
-          </div>
+
           <div className="form-row">
             <label htmlFor="desc">Product Description</label>
             <textarea

@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import connect from "./config/db.js";
 import dotenv from "dotenv";
-
 import cookieParser from "cookie-parser";
 dotenv.config();
 import productsRoutes from "./routes/productRoutes.js";
@@ -10,6 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/ordersRoute.js";
 import uploadsImage from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+// connect to db
 connect();
 const app = express();
 // body parser middleware
@@ -27,10 +27,19 @@ app.get("/api/config/paypal", (req, res) => {
 });
 const __dirname = path.resolve();
 console.log(__dirname);
+if (process.env.NODE_ENV === "production") {
+  // set static folder
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+  // any route that is not api will be redirected to index.html
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("api is running");
+  });
+}
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-app.get("/", (req, res) => {
-  res.send("api is running");
-});
 
 app.use(notFound);
 app.use(errorHandler);

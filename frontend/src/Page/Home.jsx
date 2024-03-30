@@ -4,7 +4,7 @@ import { useGetProductsQuery } from "../slices/productSlice";
 import Wrapper from "../wrapers/Home";
 import { Loader } from "../components";
 import { useParams } from "react-router-dom";
-import { Pagination } from "../components";
+import { Pagination, Meta } from "../components";
 import { Carousel } from "../components";
 import { useGetFeaturedProductsQuery } from "../slices/productSlice";
 const Home = () => {

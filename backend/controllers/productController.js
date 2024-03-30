@@ -6,7 +6,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
     ? { name: { $regex: `${req.query.keyword}`, $options: "i" } }
     : {};
-  console.log(keyword);
+
   const count = await Product.countDocuments({ ...keyword });
   const products = await Product.find({ ...keyword })
     .limit(pageSize)
@@ -28,7 +28,6 @@ const getSingleProduct = asyncHandler(async (req, res) => {
 //   /api/products
 // acces private admin
 const createProduct = asyncHandler(async (req, res) => {
-  console.log(req.body);
   const product = new Product({
     name: req.body.name || "Sample name",
     price: req.body.price || 0,
@@ -56,7 +55,7 @@ const updatedProduct = asyncHandler(async (req, res) => {
     url,
     file,
   } = req.body;
-  console.log(file);
+
   const product = await Product.findById(id);
   if (product) {
     product.name = name;
@@ -87,7 +86,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 });
 const createProductReviews = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
-  console.log(`user= ${req.user._id}`);
+
   const product = await Product.findById(req.params.id);
   if (product) {
     // user can have one comment per product
@@ -115,10 +114,8 @@ const createProductReviews = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Resource not found");
   }
-  console.log(`product= ${product.rating}`);
 });
 const getFeaturedProducts = asyncHandler(async (req, res) => {
-  console.log("jestem featured");
   const products = await Product.find({}).sort({ rating: -1 }).limit(4);
   if (products) {
     res.status(200).json(products);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGetAllOrdersQuery } from "../slices/ordersSlices";
 import { Message, Loader } from "../components";
 import { FaTimes } from "react-icons/fa";
@@ -31,9 +31,9 @@ const AdminOrders = () => {
             <tbody>
               {data.map((order) => (
                 <tr key={order._id}>
-                  <td>{order._id}</td>
+                  <td className="id">{order._id.substring(0, 10)}</td>
                   <td>{order.user && order.user.name}</td>
-                  <td>{order.createdAt}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (

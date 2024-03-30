@@ -6,7 +6,7 @@ import { LuPlus } from "react-icons/lu";
 import { HiMinusSm } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../wrapers/Product";
-import { Message } from "../components";
+import { Message, Meta } from "../components";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
 import { addToCart } from "../slices/cartSlice";
@@ -73,6 +73,7 @@ const Product = () => {
           <div>{isError?.data?.message || isError.error}</div>
         ) : (
           <div className="product-container">
+            <Meta title={product.name} />
             <div className="product-info">
               <Link to="/" className="btn">
                 Go back

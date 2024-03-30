@@ -14,6 +14,7 @@ import CreateProduct from "./CreateProduct";
 import Pagination from "./Pagination";
 import Search from "./Search";
 import Carousel from "./Carousel";
+import Meta from "./Meta";
 export {
   Navbar,
   Header,
@@ -31,4 +32,5 @@ export {
   Pagination,
   Search,
   Carousel,
+  Meta,
 };

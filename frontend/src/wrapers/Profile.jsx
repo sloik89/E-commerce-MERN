@@ -36,10 +36,12 @@ const Wrapper = styled.div`
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
+
     thead {
       font-size: 1.2rem;
       height: 50px;
     }
+
     tr {
       text-align: center;
     }
