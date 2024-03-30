@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../slices/cartSlice";
-import { CheckoutSteps, FormContainer } from "../components";
+import { CheckoutSteps } from "../components";
 import { useNavigate } from "react-router-dom";
 const Payment = () => {
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
@@ -19,7 +19,7 @@ const Payment = () => {
     }
   }, [shippingAddress, navigate]);
   return (
-    <FormContainer>
+    <div>
       <CheckoutSteps step1 step2 step3 />
       <h1>Payment Method</h1>
       <form onSubmit={submitHandler} className="login-form flex-column">
@@ -43,7 +43,7 @@ const Payment = () => {
           Continue
         </button>
       </form>
-    </FormContainer>
+    </div>
   );
 };
 
