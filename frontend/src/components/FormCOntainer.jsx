@@ -1,7 +1,7 @@
 import React from "react";
 
-const FormCOntainer = ({ children }) => {
+const FormContainer = ({ children }) => {
   return <div className="form flex-column"> {children}</div>;
 };
 
-export default FormCOntainer;
+export default FormContainer;
